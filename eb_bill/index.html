@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>EB bill amount calculator</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h2>EB bill amount calculator</h2>
+        <div class="inputdiv">
+            <input type="text" id="input" placeholder="enter the units used">
+        </div>
+       <div>
+        <button type="submit" onclick="calculate()">calculate the bill amount</button>
+       </div>
+       <div id="result">
+
+       </div>
+    </div>
+    <script>
+        function calculate(){
+            let units = Number(document.getElementById("input").value);
+            let eb_bill = 0;
+            let eb_bill2 = 0;
+            if(units <=50){
+                eb_bill = units * 0.75;
+            }
+            else if(units > 50 && units <=100){
+                eb_bill2 = units - 50;
+                units2_50 = units - eb_bill2;
+                eb_bill = units2_50 * 0.75 + eb_bill2 * 1.00;
+            }
+            else if(units > 100 && units <= 200){
+                eb_bill2 = units - 50;
+                units2_50 = units - eb_bill2;
+                eb_bill3 = units - 100;
+                units3_100 = units - eb_bill3;
+                eb_bill = units2_50 * 0.75 + units3_100 * 1.00 + eb_bill3 * 1.30;
+            }
+            else{
+                eb_bill2 = units - 50;
+                units2_50 = units - eb_bill2;
+                eb_bill3 = units - 100;
+                units3_100 = units - eb_bill3;
+                eb_bill4 = units - 200;
+                units_for_the_mid_100 = units - units3_100 - eb_bill4;
+                units4_200 = units - eb_bill4;
+                eb_bill = units2_50 * 0.75 + units3_100 * 1.00 + units_for_the_mid_100 * 1.30 + eb_bill4 * 1.50 ;
+
+            }
+            let result = document.querySelector("#result");
+            result.innerHTML = "your EB bill amount is" + " " +  eb_bill + " rupees";
+
+        }
+
+    </script>
+
+    
+</body>
+</html>
